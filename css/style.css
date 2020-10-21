@@ -1,0 +1,36 @@
+/* --- styling for registration/login page ---*/
+
+.login-main-div {
+    width: 50%;
+    margin: 5% auto;
+    background-color: whitesmoke;
+    padding: 5%;
+}
+
+.form-control {
+    margin: 20px 0px;
+}
+
+.login-main-div button {
+    font-size: 19px;
+    border-color: #3c6e91;
+    color: #3c6e91;
+}
+
+.login-main-div button:hover{
+    color: #ffffff;
+    background-color: #3c6e91;
+}
+
+.login-div a {
+    color: #3c6e91;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hidden{
+    display: none;
+}
+.show{
+    display: visible;
+}

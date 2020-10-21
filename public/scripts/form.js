@@ -18,14 +18,14 @@ document.querySelector('form').addEventListener('submit' , (e)=>{
        fetch(`/form?info=${JSON.stringify(userObj)}`).then((response)=>{
            
 
-            response.json().then((data)=>{
+            response.then((data)=>{
                 if (data.error){
                     
                  console.log('Error sending response !')
 
                     return
                 }
-               console.log('response send!!')
+               alert('Data Entered')
             })
 })
 

@@ -40,35 +40,31 @@ function onRegisterText(){
 
 
 
-var btnRegister = document.getElementsByClassName("btn-register")[0];
-btnRegister.addEventListener('click' , ()=>{
-    var username = document.getElementById('username').value
-    var password = document.getElementById('password').value
+    var btnRegister = document.getElementsByClassName("btn-register")[0];
+    btnRegister.addEventListener('click' , ()=>{
+        var username = document.getElementById('username').value
+        var password = document.getElementById('password').value
 
-        var registrationObj = {
-            username: username,
-            password: password
-        }
-
-
-     fetch(`/registration?info=${JSON.stringify(registrationObj)}`).then((response)=>{
-           
-
-        response.json().then((data)=>{
-            if (data.error){
-                
-                console.log('Error sending response')
-
-                return
+            var registrationObj = {
+                username: username,
+                password: password
             }
-           console.log('response send!!')
+
+
+        fetch(`/registration?info=${JSON.stringify(registrationObj)}`).then((response)=>{
+            
+
+            response.then((data)=>{
+                if (data.error){
+                    
+                    console.log('Error sending response')
+
+                    return
+                }
+            console.log('response send!!')
+            })
         })
-     })
-    })
-
-
-
-     
+        })
 
     var btnLogin = document.getElementsByClassName("btn-login")[0];
 
@@ -84,7 +80,7 @@ btnRegister.addEventListener('click' , ()=>{
         fetch(`/login?info=${JSON.stringify(loginObj)}`).then((response)=>{
            
 
-            response.json().then((data)=>{
+            response.then((data)=>{
                 if (data.error){
                     
                     console.log('Error sending response')

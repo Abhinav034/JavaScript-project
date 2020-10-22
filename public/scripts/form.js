@@ -12,6 +12,9 @@ document.querySelector('form').addEventListener('submit' , (e)=>{
          sellerInfo: sellerInfo,
          contactInfo: contactInfo,
          price: price
+
+         // username: 
+         // soluout : False
      }
 
     

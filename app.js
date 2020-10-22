@@ -15,6 +15,23 @@ app.get('/form' , (req , res)=>{
     console.log(userInfoObj)
     database.insert(userInfoObj , "ItemsForSell")
 })
+//getting search data
+app.get('/find' , (req , res)=>{
+    let searchQuery = req.query.string
+    console.log(searchQuery)
+     database.readSearch(searchQuery , "ItemsForSell")
+    
+    })
+
+
+    app.get('/abcd' , (req , res)=>{
+      
+        res.sendFile(`${publicPAth}/index.html`)
+         
+        
+        })
+    
+
 
 // getting registration data
 app.get('/registration' , (req , res)=>{
@@ -26,28 +43,7 @@ app.get('/registration' , (req , res)=>{
 
     database.read("userAccounts", comparison, registerationObj)
 
-    // database.insert(registerationObj, "userAccounts");
-    // var arr;
-    // async function run() {
-    //     try {
-    //         arr = await database.read("userAccounts");
-    //         }
-
-    //     catch (err) {
-    //         console.log(err.stack);
-    //     }
-    //     finally {
-    //         await client.close();
-    //         console.log("closed client");
-    //     }
-    // }
-    // run().catch(console.dir);
-
-    // console.log("outside");
     
-    // console.log(arr);
-
-    // res.send('working')
 
 })
 

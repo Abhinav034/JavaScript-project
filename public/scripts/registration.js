@@ -25,6 +25,7 @@ function onToggle(obj){
             break;
     }
 }
+
 function onLoginText(){
     var btnLogin = document.getElementsByClassName("btn-login")[0];
     var loginText = document.getElementById("login-text");

@@ -1,5 +1,5 @@
 //validate username field
-// const database = require('./public/scripts/database.js')
+import { read } from './public/scripts/database.js';
 
 function validateLoginForm(){
     var btnLogin = document.getElementsByClassName("btn-login")[0];
@@ -9,8 +9,9 @@ function validateLoginForm(){
         var username = document.forms["login-register"]["username"].value;
         // alert(username);
         
-        // var arr = database.read("userAccounts");
-        // alert(arr);
+        var arr = await read("userAccounts");
+        console.log("************");
+        console.log(arr);
 
         return true;
     } 

@@ -15,14 +15,17 @@ const viewsPath = path.join(__dirname , './views')
 app.set('view engine' , 'hbs')
 app.set('views' , viewsPath)
 
+var success = false;
 
 app.use(express.static(publicPAth))
 
 
-app.get('/index.html', function (req, res) {
+app.get('/send' , (req, res)=>{
 
-    res.sendFile("./views/abc.html")
-});
+        res.sendFile(`${publicPAth}/index.html`) 
+})
+
+
 
 app.get('' , (req , res)=>{
     res.render('index' , {
@@ -35,21 +38,21 @@ app.get('' , (req , res)=>{
 
 app.get('/home' , (req , res)=>{ 
 
-    console.log('HEllo')
+    // console.log('HEllo')
 
-    database.read("ItemsForSell", mongo2Html,null); 
+    database.read("ItemsForSell", mongo2Html,null, null); 
 })
 //getting items for selling data
 app.get('/form' , (req , res)=>{ 
     let userInfoObj = JSON.parse(req.query.info) 
-    console.log(userInfoObj)
+    // console.log(userInfoObj)
     database.insert(userInfoObj , "ItemsForSell",refreshIndex)
     
 })
 // getting search data
 app.get('/find' , (req , res)=>{
     let searchQuery = req.query.string
-    console.log(searchQuery)
+    // console.log(searchQuery)
 
      database.readSearch(searchQuery ,mongo2Html, "ItemsForSell")
 
@@ -66,7 +69,7 @@ app.get('/registration' , (req , res)=>{
     // async function run() {
     //     try {
 
-    database.read("userAccounts", comparison, registerationObj)
+    database.read("userAccounts", comparison, registerationObj, res)
 
     
 
@@ -77,7 +80,10 @@ app.get('/login' , (req , res)=>{
     let loginObj = JSON.parse(req.query.info)
     // console.log(loginObj.username)
     // database.read("userAccounts");
-    res.send('working')
+    // res.sendFile(`${publicPAth}/form.html`)
+
+    database.read("userAccounts", loginValidation, loginObj, res);
+    
 })
 
 
@@ -85,26 +91,51 @@ app.listen(3000 , () => {
     console.log(`server started at port: 3000`)
 })
 
-function comparison(arr, registerationObj){
+function loginValidation(data, loginObj, res){
+    var alreadyExist = false;
+
+    data.forEach(item => {
+        if(item.username == loginObj.username){
+            if(item.password == loginObj.password){
+                alreadyExist = true;
+                return
+            }
+            
+        } 
+
+    });
+    if(alreadyExist){
+        console.log("login successful")
+        
+
+    }else{
+        console.log("Incorrect credentials!");
+
+    }
+    
+}
+
+function comparison(data, registerationObj, res){
 
     
     console.log("callback array");
-    console.log(arr);
+    // console.log(data);
 
     var alreadyExist = false;
 
-    arr.forEach(item => {
-        if(item == registerationObj.username){
+    data.forEach(item => {
+        if(item.username == registerationObj.username){
             alreadyExist = true;
             return
         } 
 
     });
-    console.log(alreadyExist);
     if(!alreadyExist){
         database.insert(registerationObj, "userAccounts");
+
     } else{
         console.log("Use another username");
+        
     }
 
 
@@ -115,9 +146,6 @@ function refreshIndex(){
 }
 
 function mongo2Html(arr){
-
-
-
     f.readFile('views/abc.html', 'utf8',function(err, data) {
 
 
@@ -128,9 +156,6 @@ function mongo2Html(arr){
          
         var wholeStuff = ""
         arr.forEach(docItem => {
-            
-
-            
             //console.log(docItem.categeory);
             var htmlItem = `
           <div class="col mb-4" style="margin-top: 50px;">
@@ -150,9 +175,6 @@ function mongo2Html(arr){
 
     
             var r1 = data.replace("ITEM",wholeStuff)
-            
-        
-            
             
             
                 f.writeFile('public/index.html',r1 ,'utf8', function (err) {

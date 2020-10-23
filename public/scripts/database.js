@@ -38,12 +38,12 @@ const insertIntoDatabase = (document, coll, callback) => {
         run().catch(console.dir);
 }
 
-const readAll = (coll, callback, obj) => {
+const readAll = (coll, callback, obj, res) => {
     const url = "mongodb+srv://Dawgs:ahp123@testcluster001.75aip.mongodb.net/testdb001?retryWrites=true&w=majority";
     const {MongoClient} = require("mongodb/index");
     const client = new MongoClient(url);
 
-    var usernames = [];
+    var userData = [];
     var itemsData;
         async function run() {
             try {
@@ -60,12 +60,13 @@ const readAll = (coll, callback, obj) => {
                         console.log("Printing data");
                         console.log(data);
 
-                        data.forEach(item => {
-                            usernames.push(item.username);
+                        userData = data;
+                        // data.forEach(item => {
+                        //     usernames.push(item.username);
                         
-                        });
+                        // });
                         
-                        console.log("........." + usernames);
+                        // console.log("........." + usernames);
                         // return usernames;
                     
                         
@@ -89,7 +90,7 @@ const readAll = (coll, callback, obj) => {
                 console.log("closed client");
                 
                 if(coll == "userAccounts"){
-                    callback(usernames, obj);
+                    callback(userData, obj, res);
                 } else if(coll == "ItemsForSell"){
                     callback(itemsData, obj);
                 } 

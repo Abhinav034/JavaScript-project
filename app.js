@@ -52,6 +52,7 @@ app.get('/find' , (req , res)=>{
     console.log(searchQuery)
 
      database.readSearch(searchQuery ,mongo2Html, "ItemsForSell")
+
     
     })
 
@@ -129,11 +130,12 @@ function mongo2Html(arr){
         arr.forEach(docItem => {
             
 
+            
             //console.log(docItem.categeory);
             var htmlItem = `
           <div class="col mb-4" style="margin-top: 50px;">
                             <div class="card">
-                              <img src="images/img1.jpg" class="card-img-top" alt="...">
+                              <img src="${String(decodeURIComponent(docItem.imageURL))}" class="card-img-top" alt="...">
                               <div class="card-body">
                                 <h5 class="card-title">${docItem.categeory}</h5>
                                   <h6>${docItem.price}</h6>

@@ -3,21 +3,23 @@ document.querySelector('form').addEventListener('submit' , (e)=>{
     e.preventDefault()
     const itemCategory = document.getElementById('itemCat').value
     const itemDescription = document.getElementById('itemDesp').value
-    const sellerInfo = document.getElementById('sellerInfo').value
+    const photo = document.getElementById('photo').value
+    const url = encodeURIComponent(photo)
     const contactInfo = document.getElementById('contactInfo').value
     const price = document.getElementById('price').value
 
      const userObj = {
          categeory: itemCategory,
          description: itemDescription,
-         sellerInfo: sellerInfo,
+         imageURL: url,
          contactInfo: contactInfo,
          price: price
 
          // username: 
          // soluout : False
      }
-
+     var obj = JSON.stringify(userObj)
+     console.log(obj)
     
        fetch(`/form?info=${JSON.stringify(userObj)}`).then((response)=>{
            

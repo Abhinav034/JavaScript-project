@@ -2,18 +2,44 @@ const { json } = require('body-parser')
 const express = require('express')
 const path = require('path')
 const app = express()
+const hbs = require('hbs')
 const database = require('./public/scripts/database.js')
 
 const publicPAth = path.join(__dirname , './public')
 
+var f = require('fs');
+database.read("ItemsForSell", mongo2Html, null); 
+
+
+const viewsPath = path.join(__dirname , './views')
+app.set('view engine' , 'hbs')
+app.set('views' , viewsPath)
+
+
 app.use(express.static(publicPAth))
 
 
+app.get('' , (req , res)=>{
+    res.render('index' , {
+        title: 'OLX',
+        display: 'Display from backend',
+        paragraph: 'We are sending data from backend',
+        card1: "Ford"
+    })
+})
+
+app.get('/home' , (req , res)=>{ 
+
+    console.log('HEllo')
+
+    database.read("ItemsForSell", mongo2Html, null); 
+})
 //getting items for selling data
 app.get('/form' , (req , res)=>{ 
     let userInfoObj = JSON.parse(req.query.info) 
     console.log(userInfoObj)
-    database.insert(userInfoObj , "ItemsForSell")
+    database.insert(userInfoObj , "ItemsForSell", refreshIndex)
+    
 })
 //getting search data
 app.get('/find' , (req , res)=>{
@@ -61,6 +87,8 @@ app.listen(3000 , () => {
 })
 
 function comparison(arr, registerationObj){
+
+    
     console.log("callback array");
     console.log(arr);
 
@@ -80,5 +108,67 @@ function comparison(arr, registerationObj){
         console.log("Use another username");
     }
 
+
+}
+
+function refreshIndex(){
+    database.read("ItemsForSell");
+}
+
+function mongo2Html(arr){
+
+
+
+    f.readFile('views/abc.html', 'utf8',function(err, data) {
+
+
+        if (err) {
+            return console.log(err);
+          }
+    
+         
+        var wholeStuff = ""
+        arr.forEach(docItem => {
+            
+
+            //console.log(docItem.categeory);
+            var htmlItem = `
+          <div class="col mb-4" style="margin-top: 50px;">
+                            <div class="card">
+                              <img src="images/img1.jpg" class="card-img-top" alt="...">
+                              <div class="card-body">
+                                <h5 class="card-title">${docItem.categeory}</h5>
+                                  <h6>${docItem.price}</h6>
+                                  <h6>${docItem.description}</h6>
+                              </div>
+                            </div>
+                          </div>  
+          `
+            wholeStuff += htmlItem
+
+        });  
+
+    
+            var r1 = data.replace("ITEM",wholeStuff)
+            
+        
+            
+            
+            
+                f.writeFile('public/index.html',r1 ,'utf8', function (err) {
+                    if (err) return console.log(err);
+                 });
+
+                 console.log("index html file was updated with new data from database")
+
+
+
+            
+          
+    
+    });
+
+    
+     
 
 }

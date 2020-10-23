@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Abhinav034/JavaScript-project#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "hbs": "^4.1.1",
     "mongodb": "^3.6.2"
   }
 }

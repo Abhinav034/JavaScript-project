@@ -1,3 +1,4 @@
+
 document.querySelector('form').addEventListener('submit' , (e)=>{
     e.preventDefault()
     const itemCategory = document.getElementById('itemCat').value
@@ -30,6 +31,9 @@ document.querySelector('form').addEventListener('submit' , (e)=>{
                 }
                alert('Data Entered')
             })
-})
 
+})
+    
+        
+    
 })

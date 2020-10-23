@@ -1,3 +1,10 @@
+window.onload (
+    fetch("/home").then((response)=>{
+
+    })
+)
+
+
 document.getElementById('search').addEventListener('submit' , (e)=>{
 e.preventDefault()
 let input = document.getElementById('searchInput').value
@@ -15,9 +22,5 @@ fetch(`/find?string=${input}`).then((response)=>{
        console.log(data)
     })
  })
-
-
- 
-
 
 })

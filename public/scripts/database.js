@@ -1,4 +1,4 @@
-const insertIntoDatabase = (document, coll) => {
+const insertIntoDatabase = (document, coll, callback = null) => {
     const url = "mongodb+srv://Dawgs:ahp123@testcluster001.75aip.mongodb.net/testdb001?retryWrites=true&w=majority";
     const {MongoClient} = require("mongodb/index");
     const client = new MongoClient(url);
@@ -29,6 +29,9 @@ const insertIntoDatabase = (document, coll) => {
             finally {
                 await client.close();
                 console.log("closed client");
+                if(coll == "ItemsForSell"){
+                    callback();
+                }
             }
         }
         
@@ -41,6 +44,7 @@ const readAll = (coll, callback, obj) => {
     const client = new MongoClient(url);
 
     var usernames = [];
+    var itemsData;
         async function run() {
             try {
                 await client.connect();
@@ -49,20 +53,31 @@ const readAll = (coll, callback, obj) => {
                 const db = client.db("JS_Project");
                 const col = db.collection(coll);
 
-                col.find().toArray(function(err, data) {
-                    console.log("Printing data");
-                    console.log(data);
+                if(coll == "userAccounts"){
 
-                    data.forEach(item => {
-                        usernames.push(item.username);
+                
+                    col.find().toArray(function(err, data) {
+                        console.log("Printing data");
+                        console.log(data);
+
+                        data.forEach(item => {
+                            usernames.push(item.username);
+                        
+                        });
+                        
+                        console.log("........." + usernames);
+                        // return usernames;
                     
-                    });
-                    
-                    console.log("........." + usernames);
-                    // return usernames;
-                   
-                    
-                 });    
+                        
+                    });   
+                } else if(coll == "ItemsForSell"){
+                    col.find().toArray(function(err, data) {
+                        console.log("Printing items data");
+                        console.log(data);
+                        
+                        itemsData = data;
+                    });   
+                } 
                 
 
             } catch (err) {
@@ -70,10 +85,14 @@ const readAll = (coll, callback, obj) => {
             }
             finally {
                 await client.close();
-                console.log("closed client");
 
+                console.log("closed client");
                 
-                callback(usernames, obj);
+                if(coll == "userAccounts"){
+                    callback(usernames, obj);
+                } else if(coll == "ItemsForSell"){
+                    callback(itemsData);
+                } 
             }
         }
         run().catch(console.dir);

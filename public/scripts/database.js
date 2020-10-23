@@ -39,6 +39,10 @@ const insertIntoDatabase = (document, coll, callback) => {
 }
 
 const readAll = (coll, callback, obj, res) => {
+
+    
+    
+   
     const url = "mongodb+srv://Dawgs:ahp123@testcluster001.75aip.mongodb.net/testdb001?retryWrites=true&w=majority";
     const {MongoClient} = require("mongodb/index");
     const client = new MongoClient(url);
@@ -47,6 +51,9 @@ const readAll = (coll, callback, obj, res) => {
     var itemsData;
         async function run() {
             try {
+
+                console.log(2)
+                
                 await client.connect();
                 console.log("Connected correctly to server");
         
@@ -85,20 +92,25 @@ const readAll = (coll, callback, obj, res) => {
                 console.log(err.stack);
             }
             finally {
+
                 await client.close();
 
                 console.log("closed client");
-                
+               
                 if(coll == "userAccounts"){
+
                     callback(userData, obj, res);
+                    
                 } else if(coll == "ItemsForSell"){
-                    callback(itemsData, obj);
+                    
+                    callback(itemsData, res);
+                    
                 } 
             }
         }
         run().catch(console.dir);
 }
-    const readDatabase = (searchQuery ,callback, collection )=>{
+    const readDatabase = (searchQuery ,callback, collection, res )=>{
     const url = "mongodb+srv://Dawgs:ahp123@testcluster001.75aip.mongodb.net/testdb001?retryWrites=true&w=majority";
     const {MongoClient} = require("mongodb/index");
     const client = new MongoClient(url);
@@ -126,7 +138,7 @@ const readAll = (coll, callback, obj, res) => {
             await client.close();
             console.log("closed client");
             if(collection == "ItemsForSell"){
-                callback(data);
+                callback(data, res);
             }
         }
 

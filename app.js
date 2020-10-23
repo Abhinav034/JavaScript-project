@@ -2,50 +2,22 @@ const { json } = require('body-parser')
 const express = require('express')
 const path = require('path')
 const app = express()
-const hbs = require('hbs')
 const database = require('./public/scripts/database.js')
-
 const publicPAth = path.join(__dirname , './public')
 
 var f = require('fs');
-database.read("ItemsForSell", mongo2Html, null); 
 
+database.read("ItemsForSell", mongo2Html, null, null); 
 
-const viewsPath = path.join(__dirname , './views')
-app.set('view engine' , 'hbs')
-app.set('views' , viewsPath)
-
-var success = false;
 
 app.use(express.static(publicPAth))
 
 
-app.get('/send' , (req, res)=>{
-
-        res.sendFile(`${publicPAth}/index.html`) 
-})
-
-
-
-app.get('' , (req , res)=>{
-    res.render('index' , {
-        title: 'OLX',
-        display: 'Display from backend',
-        paragraph: 'We are sending data from backend',
-        card1: "Ford"
-    })
-})
-
-app.get('/home' , (req , res)=>{ 
-
-    // console.log('HEllo')
-
-    database.read("ItemsForSell", mongo2Html,null, null); 
-})
 //getting items for selling data
 app.get('/form' , (req , res)=>{ 
     let userInfoObj = JSON.parse(req.query.info) 
     // console.log(userInfoObj)
+    res.send("done");
     database.insert(userInfoObj , "ItemsForSell",refreshIndex)
     
 })
@@ -54,24 +26,24 @@ app.get('/find' , (req , res)=>{
     let searchQuery = req.query.string
     // console.log(searchQuery)
 
-     database.readSearch(searchQuery ,mongo2Html, "ItemsForSell")
+     database.readSearch(searchQuery ,mongo2Html, "ItemsForSell",res)
 
     
     })
 
+app.get("/searchall", (req,res)=>{
 
+    database.read("ItemsForSell", mongo2Html, null, res); 
+
+})
 
 // getting registration data
 app.get('/registration' , (req , res)=>{
     let registerationObj = JSON.parse(req.query.info)
-    
-    // console.log(registerationObj.username)
-    // async function run() {
-    //     try {
 
+    console.log(1)
+    //res.send("lalalalala"); - till here its fine
     database.read("userAccounts", comparison, registerationObj, res)
-
-    
 
 })
 
@@ -81,7 +53,7 @@ app.get('/login' , (req , res)=>{
     // console.log(loginObj.username)
     // database.read("userAccounts");
     // res.sendFile(`${publicPAth}/form.html`)
-
+    res.send("login")
     database.read("userAccounts", loginValidation, loginObj, res);
     
 })
@@ -92,6 +64,7 @@ app.listen(3000 , () => {
 })
 
 function loginValidation(data, loginObj, res){
+    res.send("kkkkkk");
     var alreadyExist = false;
 
     data.forEach(item => {
@@ -116,8 +89,14 @@ function loginValidation(data, loginObj, res){
 }
 
 function comparison(data, registerationObj, res){
+  
 
-    
+    if(res !== null){
+        res.send("abcdefghijklmnopqrstuvwxyz");
+     }else{
+         console.log("else")
+     }
+    console.log(3)
     console.log("callback array");
     // console.log(data);
 
@@ -131,10 +110,14 @@ function comparison(data, registerationObj, res){
 
     });
     if(!alreadyExist){
-        database.insert(registerationObj, "userAccounts");
+        //database.insert(registerationObj, "userAccounts");
+        
+        console.log(4)
 
     } else{
         console.log("Use another username");
+        res.send("registration Not successfull!!")
+        console.log("4 wrong")
         
     }
 
@@ -145,7 +128,14 @@ function refreshIndex(){
     database.read("ItemsForSell",mongo2Html,null);
 }
 
-function mongo2Html(arr){
+function mongo2Html(arr, res){
+
+    if(res !== null){
+        res.send("abcdefghijklmnopqrstuvwxyz");
+     }else{
+         console.log("else")
+     }
+
     f.readFile('views/abc.html', 'utf8',function(err, data) {
 
 
@@ -182,6 +172,9 @@ function mongo2Html(arr){
                  });
 
                  console.log("index html file was updated with new data from database")
+                 
+                 
+                 
     
     });
 

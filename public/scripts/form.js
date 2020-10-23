@@ -23,6 +23,8 @@ document.querySelector('form').addEventListener('submit' , (e)=>{
     
        fetch(`/form?info=${JSON.stringify(userObj)}`).then((response)=>{
            
+        alert("form");
+        window.location.href = "http://localhost:3000/index.html"
 
             response.then((data)=>{
                 if (data.error){

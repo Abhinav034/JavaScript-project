@@ -55,6 +55,10 @@ function onRegisterText(){
         fetch(`/registration?info=${JSON.stringify(registrationObj)}`).then((response)=>{
             
 
+            alert("restration successful")
+
+          
+
             response.then((data)=>{
                 if (data.error){
                     
@@ -80,6 +84,9 @@ function onRegisterText(){
 
         fetch(`/login?info=${JSON.stringify(loginObj)}`).then((response)=>{
            
+            alert("login successful")
+            window.location.href = "http://localhost:3000/form.html"
+
 
             response.then((data)=>{
                 if (data.error){

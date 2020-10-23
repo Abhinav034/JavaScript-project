@@ -1,4 +1,4 @@
-const insertIntoDatabase = (document, coll, callback = null) => {
+const insertIntoDatabase = (document, coll, callback) => {
     const url = "mongodb+srv://Dawgs:ahp123@testcluster001.75aip.mongodb.net/testdb001?retryWrites=true&w=majority";
     const {MongoClient} = require("mongodb/index");
     const client = new MongoClient(url);
@@ -30,7 +30,7 @@ const insertIntoDatabase = (document, coll, callback = null) => {
                 await client.close();
                 console.log("closed client");
                 if(coll == "ItemsForSell"){
-                    callback();
+                    callback()
                 }
             }
         }
@@ -91,7 +91,7 @@ const readAll = (coll, callback, obj) => {
                 if(coll == "userAccounts"){
                     callback(usernames, obj);
                 } else if(coll == "ItemsForSell"){
-                    callback(itemsData);
+                    callback(itemsData, obj);
                 } 
             }
         }

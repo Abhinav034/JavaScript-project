@@ -19,6 +19,11 @@ app.set('views' , viewsPath)
 app.use(express.static(publicPAth))
 
 
+app.get('/index.html', function (req, res) {
+
+    res.sendFile("./views/abc.html")
+});
+
 app.get('' , (req , res)=>{
     res.render('index' , {
         title: 'OLX',
@@ -32,32 +37,21 @@ app.get('/home' , (req , res)=>{
 
     console.log('HEllo')
 
-    database.read("ItemsForSell", mongo2Html, null); 
+    database.read("ItemsForSell", mongo2Html,null); 
 })
 //getting items for selling data
 app.get('/form' , (req , res)=>{ 
     let userInfoObj = JSON.parse(req.query.info) 
     console.log(userInfoObj)
-    database.insert(userInfoObj , "ItemsForSell", refreshIndex)
+    database.insert(userInfoObj , "ItemsForSell",refreshIndex)
     
 })
-//getting search data
+// getting search data
 app.get('/find' , (req , res)=>{
     let searchQuery = req.query.string
     console.log(searchQuery)
+
      database.readSearch(searchQuery ,mongo2Html, "ItemsForSell")
-     
-
-     
-        
-            res.send("Hellooooooooooo");
-                
-                console.log("page is redirected");
-
-           
-
-         
-     
     
     })
 
@@ -116,7 +110,7 @@ function comparison(arr, registerationObj){
 }
 
 function refreshIndex(){
-    database.read("ItemsForSell");
+    database.read("ItemsForSell",mongo2Html,null);
 }
 
 function mongo2Html(arr){
@@ -164,10 +158,6 @@ function mongo2Html(arr){
                  });
 
                  console.log("index html file was updated with new data from database")
-
-                 
-            
-          
     
     });
 

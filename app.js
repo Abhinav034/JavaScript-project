@@ -45,18 +45,22 @@ app.get('/form' , (req , res)=>{
 app.get('/find' , (req , res)=>{
     let searchQuery = req.query.string
     console.log(searchQuery)
-     database.readSearch(searchQuery , "ItemsForSell")
+     database.readSearch(searchQuery ,mongo2Html, "ItemsForSell")
+     
+
+     
+        
+            res.send("Hellooooooooooo");
+                
+                console.log("page is redirected");
+
+           
+
+         
+     
     
     })
 
-
-    app.get('/abcd' , (req , res)=>{
-      
-        res.sendFile(`${publicPAth}/index.html`)
-         
-        
-        })
-    
 
 
 // getting registration data
@@ -161,8 +165,7 @@ function mongo2Html(arr){
 
                  console.log("index html file was updated with new data from database")
 
-
-
+                 
             
           
     

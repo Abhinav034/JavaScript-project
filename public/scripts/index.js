@@ -1,8 +1,7 @@
-window.onload (
+
     fetch("/home").then((response)=>{
 
-    })
-)
+    });
 
 
 document.getElementById('search').addEventListener('submit' , (e)=>{

@@ -97,10 +97,11 @@ const readAll = (coll, callback, obj) => {
         }
         run().catch(console.dir);
 }
-    const readDatabase = (searchQuery , collection )=>{
+    const readDatabase = (searchQuery ,callback, collection )=>{
     const url = "mongodb+srv://Dawgs:ahp123@testcluster001.75aip.mongodb.net/testdb001?retryWrites=true&w=majority";
     const {MongoClient} = require("mongodb/index");
     const client = new MongoClient(url);
+    var data = []
     async function run() {
         try {
             await client.connect();
@@ -114,6 +115,7 @@ const readAll = (coll, callback, obj) => {
                 // test.ok(explain != null);
                  
                 console.log(explain)
+                data = explain;
             
              });
                
@@ -122,6 +124,9 @@ const readAll = (coll, callback, obj) => {
         }finally {
             await client.close();
             console.log("closed client");
+            if(collection == "ItemsForSell"){
+                callback(data);
+            }
         }
 
      } 

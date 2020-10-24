@@ -43,6 +43,7 @@ function onRegisterText(){
 
     var btnRegister = document.getElementsByClassName("btn-register")[0];
     btnRegister.addEventListener('click' , ()=>{
+        
         var username = document.getElementById('username').value
         var password = document.getElementById('password').value
 
@@ -52,24 +53,14 @@ function onRegisterText(){
             }
 
 
-        fetch(`/registration?info=${JSON.stringify(registrationObj)}`).then((response)=>{
+            fetch(`/reg?info=${JSON.stringify(registrationObj)}`).then((response)=>{
             
+                console.log(response.body)
 
-            alert("restration successful")
-
-          
-
-            response.then((data)=>{
-                if (data.error){
-                    
-                    console.log('Error sending response')
-
-                    return
-                }
-            console.log('response send!!')
-            })
         })
-        })
+
+        });
+
 
     var btnLogin = document.getElementsByClassName("btn-login")[0];
 

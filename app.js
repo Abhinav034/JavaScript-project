@@ -38,12 +38,13 @@ app.get("/searchall", (req,res)=>{
 })
 
 // getting registration data
-app.get('/registration' , (req , res)=>{
-    let registerationObj = JSON.parse(req.query.info)
+app.get('/reg' , (req , res)=>{
+    
+    var obj = req.query.info;
+    
 
-    console.log(1)
-    //res.send("lalalalala"); - till here its fine
-    database.read("userAccounts", comparison, registerationObj, res)
+    database.read("userAccounts", comparison, JSON.parse(obj), res); 
+
 
 })
 
@@ -91,11 +92,7 @@ function loginValidation(data, loginObj, res){
 function comparison(data, registerationObj, res){
   
 
-    if(res !== null){
-        res.send("abcdefghijklmnopqrstuvwxyz");
-     }else{
-         console.log("else")
-     }
+    
     console.log(3)
     console.log("callback array");
     // console.log(data);
@@ -111,13 +108,31 @@ function comparison(data, registerationObj, res){
     });
     if(!alreadyExist){
         //database.insert(registerationObj, "userAccounts");
-        
+        if(res !== null){
+
+            res.json({
+                status: 'Successfull'
+            });
+         }else{
+             console.log("else")
+         }
         console.log(4)
 
     } else{
         console.log("Use another username");
-        res.send("registration Not successfull!!")
+
+
+        
         console.log("4 wrong")
+
+        if(res !== null){
+
+            res.json({
+                status:'Unsuccesfull'
+            })
+         }else{
+             console.log("else")
+         }
         
     }
 

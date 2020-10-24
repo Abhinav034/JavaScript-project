@@ -26,6 +26,7 @@ fetch(`/find?string=${input}`).then((response)=>{
 document.getElementById('showAll').addEventListener('click' , ()=>{
     fetch('/searchAll').then((response)=>{
         
+        alert("a")
         window.location.reload();
 
     })

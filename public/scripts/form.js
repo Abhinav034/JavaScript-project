@@ -1,12 +1,12 @@
 
 document.querySelector('form').addEventListener('submit' , (e)=>{
     e.preventDefault()
-    const itemCategory = document.getElementById('itemCat').value
-    const itemDescription = document.getElementById('itemDesp').value
-    const photo = document.getElementById('photo').value
+    const itemCategory = document.getElementById('itemCat').value.trim()
+    const itemDescription = document.getElementById('itemDesp').value.trim()
+    const photo = document.getElementById('photo').value.trim()
     const url = encodeURIComponent(photo)
-    const contactInfo = document.getElementById('contactInfo').value
-    const price = document.getElementById('price').value
+    const contactInfo = document.getElementById('contactInfo').value.trim()
+    const price = document.getElementById('price').value.trim()
 
      const userObj = {
          categeory: itemCategory,
@@ -14,9 +14,6 @@ document.querySelector('form').addEventListener('submit' , (e)=>{
          imageURL: url,
          contactInfo: contactInfo,
          price: price
-
-         // username: 
-         // soluout : False
      }
      var obj = JSON.stringify(userObj)
      console.log(obj)

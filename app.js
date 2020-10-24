@@ -25,7 +25,7 @@ app.get('/form' , (req , res)=>{
 app.get('/find' , (req , res)=>{
     let searchQuery = req.query.string
     // console.log(searchQuery)
-
+    
      database.readSearch(searchQuery ,mongo2Html, "ItemsForSell",res)
 
     
@@ -40,10 +40,10 @@ app.get("/searchall", (req,res)=>{
 // getting registration data
 app.get('/reg' , (req , res)=>{
     
-    var obj = req.query.info;
+    var obj = JSON.parse(req.query.info);
     
 
-    database.read("userAccounts", comparison, JSON.parse(obj), res); 
+    database.read("userAccounts", comparison, obj, res); 
 
 
 })
@@ -51,10 +51,6 @@ app.get('/reg' , (req , res)=>{
 //getting login data
 app.get('/login' , (req , res)=>{
     let loginObj = JSON.parse(req.query.info)
-    // console.log(loginObj.username)
-    // database.read("userAccounts");
-    // res.sendFile(`${publicPAth}/form.html`)
-    res.send("login")
     database.read("userAccounts", loginValidation, loginObj, res);
     
 })
@@ -65,7 +61,7 @@ app.listen(3000 , () => {
 })
 
 function loginValidation(data, loginObj, res){
-    res.send("kkkkkk");
+   
     var alreadyExist = false;
 
     data.forEach(item => {
@@ -79,10 +75,16 @@ function loginValidation(data, loginObj, res){
 
     });
     if(alreadyExist){
+        res.send({
+            status:'Successful'
+        })
         console.log("login successful")
         
 
     }else{
+        res.send({
+            status:'Unsuccessful'
+        })
         console.log("Incorrect credentials!");
 
     }
@@ -95,7 +97,7 @@ function comparison(data, registerationObj, res){
     
     console.log(3)
     console.log("callback array");
-    // console.log(data);
+   
 
     var alreadyExist = false;
 
@@ -107,12 +109,12 @@ function comparison(data, registerationObj, res){
 
     });
     if(!alreadyExist){
-        //database.insert(registerationObj, "userAccounts");
+        database.insert(registerationObj, "userAccounts");
         if(res !== null){
 
-            res.json({
-                status: 'Successfull'
-            });
+            res.send({
+                status:'Successful'
+            })
          }else{
              console.log("else")
          }
@@ -127,8 +129,8 @@ function comparison(data, registerationObj, res){
 
         if(res !== null){
 
-            res.json({
-                status:'Unsuccesfull'
+            res.send({
+                status:'Unsuccessful'
             })
          }else{
              console.log("else")
@@ -161,7 +163,7 @@ function mongo2Html(arr, res){
          
         var wholeStuff = ""
         arr.forEach(docItem => {
-            //console.log(docItem.categeory);
+            
             var htmlItem = `
           <div class="col mb-4" style="margin-top: 50px;">
                             <div class="card">

@@ -44,8 +44,8 @@ function onRegisterText(){
     var btnRegister = document.getElementsByClassName("btn-register")[0];
     btnRegister.addEventListener('click' , ()=>{
         
-        var username = document.getElementById('username').value
-        var password = document.getElementById('password').value
+        var username = document.getElementById('username').value.trim()
+        var password = document.getElementById('password').value.trim()
 
             var registrationObj = {
                 username: username,
@@ -54,8 +54,20 @@ function onRegisterText(){
 
 
             fetch(`/reg?info=${JSON.stringify(registrationObj)}`).then((response)=>{
-            
-                console.log(response.body)
+
+                
+
+               response.json().then((data)=>{
+                   console.log(data)
+                if (data.status === 'Unsuccessful'){
+                    alert('Username already exsits')
+                }else{
+                    alert('Registration successful')
+                    window.location.href = "http://localhost:3000"
+                    
+                }
+               })
+                
 
         })
 
@@ -65,8 +77,8 @@ function onRegisterText(){
     var btnLogin = document.getElementsByClassName("btn-login")[0];
 
     btnLogin.addEventListener('click' , ()=>{
-        var username = document.getElementById('username').value
-        var password = document.getElementById('password').value
+        var username = document.getElementById('username').value.trim()
+        var password = document.getElementById('password').value.trim()
 
         var loginObj = {
             username: username,
@@ -75,19 +87,18 @@ function onRegisterText(){
 
         fetch(`/login?info=${JSON.stringify(loginObj)}`).then((response)=>{
            
-            alert("login successful")
-            window.location.href = "http://localhost:3000/form.html"
-
-
-            response.then((data)=>{
-                if (data.error){
+            response.json().then((data)=>{
+                if (data.status === 'Unsuccessful'){
+                    alert('Invaid Username/Password')
+                }else{
+                    alert('Logged In Successfully')
+                    window.location.href = "http://localhost:3000/form.html"
                     
-                    console.log('Error sending response')
-    
-                    return
                 }
-               console.log('response send!!')
-            })
+               })
+
+
+           
          })
 
 

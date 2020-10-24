@@ -2,12 +2,10 @@
 
 document.getElementById('search').addEventListener('submit' , (e)=>{
 e.preventDefault()
-let input = document.getElementById('searchInput').value
+let input = document.getElementById('searchInput').value.trim()
     console.log(input)
 fetch(`/find?string=${input}`).then((response)=>{
            
-   alert("index - find")
-
     window.location.reload();
 
     response.then((data)=>{
@@ -25,8 +23,6 @@ fetch(`/find?string=${input}`).then((response)=>{
 
 document.getElementById('showAll').addEventListener('click' , ()=>{
     fetch('/searchAll').then((response)=>{
-        
-        alert("a")
         window.location.reload();
 
     })

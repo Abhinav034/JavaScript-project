@@ -15,14 +15,6 @@ const insertIntoDatabase = (document, coll, callback) => {
                  const p = await col.insertOne(document);
                  console.log("insertion done");
 
-                //  const dataall = col.find({}).toArray(function(err, explain) {
-                //     // test.equal(null, err);
-                //     // test.ok(explain != null);
-                //     console.log(explain)
-                 
-                //  });
-        
-                //  console.log(dataall);
             } catch (err) {
                 console.log(err.stack);
             }
@@ -68,15 +60,6 @@ const readAll = (coll, callback, obj, res) => {
                         console.log(data);
 
                         userData = data;
-                        // data.forEach(item => {
-                        //     usernames.push(item.username);
-                        
-                        // });
-                        
-                        // console.log("........." + usernames);
-                        // return usernames;
-                    
-                        
                     });   
                 } else if(coll == "ItemsForSell"){
                     col.find().toArray(function(err, data) {
@@ -124,8 +107,7 @@ const readAll = (coll, callback, obj, res) => {
             const col = db.collection(collection);
 
             const dataall = col.find({categeory: `${searchQuery}`}).toArray(function(err, explain) {
-                // test.equal(null, err);
-                // test.ok(explain != null);
+               
                  
                 console.log(explain)
                 data = explain;

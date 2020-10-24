@@ -1,4 +1,4 @@
-const { json } = require('body-parser')
+
 const express = require('express')
 const path = require('path')
 const app = express()
@@ -170,8 +170,9 @@ function mongo2Html(arr, res){
                               <img src="${String(decodeURIComponent(docItem.imageURL))}" class="card-img-top" alt="...">
                               <div class="card-body">
                                 <h5 class="card-title">${docItem.categeory}</h5>
-                                  <h6>${docItem.price}</h6>
+                                  <h6>CAD ${docItem.price}</h6>
                                   <h6>${docItem.description}</h6>
+                                  <h6>Contact No: ${docItem.contactInfo}</h6>
                               </div>
                             </div>
                           </div>  

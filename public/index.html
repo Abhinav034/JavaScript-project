@@ -3,31 +3,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Dwags</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="shortcut icon" href="http://www.example.com/myicon.ico"/>
+    <title>Sell here..</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">BUY AND SELL - ALMOST ANYTHING</a>
+        <a class="navbar-brand logo" href="index.html"><h2>E<span id="a">A</span><span id="s">S</span><span id="y">Y</span><sub> sell...</sub></h2></a>
       
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
              
           <form id="search" class="form-inline m-auto my-2 my-lg-0" >
             <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn my-2 my-sm-0 index-btn-search" type="submit">Search</button>
           </form>
-          <button id="showAll" class="btn btn-outline-success my-2 my-sm-0">Show all</button>
+          <button id="showAll" class="btn my-2 my-sm-0 index-btn-showall">Show all</button>
+          <form action="form.html" id="item-form">
+            <button id="addItem" class="btn my-2 my-sm-0 index-btn-add">Add Item</button>
+          </form>
           <form class="form-inline my-2 my-lg-0" action="registration.html">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Log in </button> 
+            <button class="btn my-2 my-sm-0 index-btn-login" type="submit"> Log in </button> 
+            <button class="btn my-2 my-sm-0 index-btn-logout hidden" type="submit"> Log out </button>
           </form>
           
         </div>
         
       </nav>
 
-      <div class="jumbotron jumbotron-fluid" style="background-color:#3c6e91">
+      <div class="jumbotron jumbotron-fluid" style="background-color:cadetblue">
         <div class="container">
           <h1 class="display-4" style="color:#e8f3fa;">One Stop for All Your Exchanging</h1>
           <p class="lead" style="color: #e8f3fa;">Just Click a photo and upload to Sell. Explore a wide range of shopping at affordable prices.</p>
@@ -36,7 +42,7 @@
 
         <div style="width: 90%; margin: 0 auto; background-color: whitesmoke;">
 
-            <div style="width: 85%; margin: 0  auto;">
+            <div style="width: 85%; margin: 0  auto; font-family: optima;">
 
                 <div class="row row-cols-1 row-cols-md-3">
                             
@@ -47,10 +53,10 @@
                             <div class="card">
                               <img src="https://cdn.mos.cms.futurecdn.net/vEcELHdn998wRTcCzqV5m9.jpg" class="card-img-top" alt="...">
                               <div class="card-body">
-                                <h5 class="card-title">Laptop</h5>
+                                <h4 class="card-title">Laptop</h4>
                                   <h6>CAD 1500</h6>
                                   <h6>Dell</h6>
-                                  <h6><a href=''>Contact No: 111-333-5678</a></h6>
+                                  <h6>Contact No: 111-333-5678</h6>
                               </div>
                             </div>
                           </div>  
@@ -59,10 +65,10 @@
                             <div class="card">
                               <img src="https://garneau.com/media/catalog/product/cache/10f519365b01716ddb90abc57de5a837/1/a/1a76571_10q_01.jpg" class="card-img-top" alt="...">
                               <div class="card-body">
-                                <h5 class="card-title">Bicycle</h5>
+                                <h4 class="card-title">Bicycle</h4>
                                   <h6>CAD 49</h6>
                                   <h6>Mountain</h6>
-                                  <h6><a href=''>Contact No: 222-333-6776</a></h6>
+                                  <h6>Contact No: 222-333-6776</h6>
                               </div>
                             </div>
                           </div>  
@@ -71,10 +77,10 @@
                             <div class="card">
                               <img src="https://medias.roomlala.com/home/photo/4/400x300/a_235122_1583199595_4_400x300.jpg" class="card-img-top" alt="...">
                               <div class="card-body">
-                                <h5 class="card-title">Room</h5>
+                                <h4 class="card-title">Room</h4>
                                   <h6>CAD 900</h6>
                                   <h6>For rent</h6>
-                                  <h6><a href=''>Contact No: 222-333-4567</a></h6>
+                                  <h6>Contact No: 222-333-4567</h6>
                               </div>
                             </div>
                           </div>  
@@ -83,10 +89,10 @@
                             <div class="card">
                               <img src="https://www.extremetech.com/wp-content/uploads/2019/12/SONATA-hero-option1-764A5360-edit.jpg" class="card-img-top" alt="...">
                               <div class="card-body">
-                                <h5 class="card-title">Car</h5>
+                                <h4 class="card-title">Car</h4>
                                   <h6>CAD 3400</h6>
                                   <h6>Red</h6>
-                                  <h6><a href=''>Contact No: 222-333-4567</a></h6>
+                                  <h6>Contact No: 222-333-4567</h6>
                               </div>
                             </div>
                           </div>  
@@ -95,10 +101,10 @@
                             <div class="card">
                               <img src="data:image/jpeg;base64,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5blV7Nz6aS/VskRHpreaCeUREBERAREQEREBERAREQEREBERAREQEREBERAVeNIFEabKFVFsY53as5tk73kHazfuqw65DSJmWMoxNLHBlTHfs3m+o4HbG+2Nt4O4+IIV9fNZST/0/U73S109vo9SKO+4vJc4jqBq/iC4bOPM7KFKLS02q1x1WyB8ToybXws6+ziBvUkaHaj+zzy0Av2ckQqI77Q4arX35kOZ+AoJZREQEREBERAREQFFunxv91ozv7cjwMbj+gUpKKdP0n0FE3cZJHeIYB/EUEP0i7TRCf8AvEXOKYHpqg/oFxdK4Lu9C8BdlYvA7rKeUk7gS6NrfO7vIoJ7REQEREBERAREQEREBERAREQEREBERAREQEREBERBwGlqovHS07fafIX+Q1R5l/ouf0dsBytUylwbDS02qXOIDRruaGkk4AasUi2OlyV0E1JUlpLLagP1WuBLrdSDf7pUX5xVErS5kUpbDUar3tFu8Y76tztw1zhsvY8FRKGdOllkd2UcYkOztnh3ZfdaMXeYXESaScqvdrCrDR9hkUGqPxNJ9VxDqaTaXOd94k+q+Me9uI7wG43B8DtBUErZF0tVTCBUwslZvdGOzlHO1y13Tu9VKOb2cVNWx9pBJrW9phwljPB7do67DuJVaqSpbICRtG0H2m8zxHPdv4rNoauammZUQSFkrdjhsI3tcNjmneDy32QWeRczmNnfHlGEmwZUMsJYr7Cdj28WHG3DELpkBEUa556ShGXQUWq54wdUHvRtO8Rj65944dUEkucALk2HE7FxWlrJMVVkuZ5fYwfTseMbltwWfeaS3kSDuUHZbrJal2vUSvlde/0ji4A+604N6AALXU5cwPbG4sa4We1hLWvHBwGDhyKDaVOQXGOmbTxvknka0hjAXOeXXOzdYYk7gDdThovzNOTqZxlINVNZ0pGLWAX1YmneBckneXHdZRDmjl4wT0sh2wO/FEbh466jnW8FZFpuLjYg+oiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIggvS/lR09c+AHuQNDWt3do5oc53q1v3VwrHOc1msLatwAdoB4+Xot/pGkLMp1wO3tRb70bHD0IXKdq4/WKDawL91FGHC4wP5rX09UQccR6reU7g5oINwqjm6inc12uw6sjfXkf5rZUNWJWXtYjBzdmo7/iT5Hlsy6+l1hcbR6rn5XGN/bNHJ7dzm77hRXRZJylLR1MdVCbSMOI+q9p9qN3ukDwIB2gKxmQsrR1dPFUxHuPF7b2nY5juYNweirQHhwBBuCLg8Rz57j0XV5hZ4OoG1URxY9hfE3GzagAAX4NcNvwBB1+lLO0t1qCF1iR9O8HEA/sgeYOPI24qKHle1VK5xc9zi5ziXOcdriTdxPM3PmsaQoMaZeVM3av1MV7U8dmoPF7PkYEKZNEuf/wDaWsoKiwqGNtFJsE7WN2EbpA0Xw2gE4WKiGQWC+5qVRhngnBsY5Y335B3eHi246FBatERAREQEREBERAREQEREBERAREQEREBERAREQEREEA6bKEx5TElu7LCxwPFzbsd6NZ5rgwFOWnDIxlo4qpou6nf3sMeyks13k4RnpdQeEABZVFUlhvu3jj/VY4C+oOi1gRcHArS5Ths6+4r90lTYWvhuX2rfrNIVRrMnTahdEdg7zfhO0en+kLYOd5rTTOsWv3g+h2rOZLh6fy9FFbOWTAf1WPI/5+fnBfI390dF4TS7gg+sbrOtuWa82Fl404DRfeseepxQK+WzDzwHivWiitFzN/5fota95keGjYPzXYZp0BqK6ipmjAytc7DARRd99+Fw3VvxcEFkG7AvqIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiDxrKVksb4pGh0b2uY9p2Oa4WIPgVWjO/NuTJ9U+nfcs9qKQj/ABI74H4hsI4jgQrOrS52ZtQ5QgMMosRjHKLa8T/tDiOI3jwICsaOF1uc6M2amgl7OdndJIjmbfspR7p3G21pxHMYrToPslhGbYOw3Y7RsWKJHX2nxvZelRJYW3leGug8ptjh1XtGcPngF+aWmfNKIo2OfI42axgJe48gPkKWsl6GnuoZDNKGVrrOiaDeGK2OpIR7RdsJHs4WvjrBFD6rCwX5hk3r2yxkielmdBUROjkG52xw+012xzeYWEgy5Kq6w5pjsG07F5yS7hiV9jbbE7fyQZdJZg571O+hvNd0MLq+Ztpp2gRNIs6OC4OPAvIDugbzXI6K9HLqlzK2rYRTAh0ULsDUEYhzhui32+t8PtTwgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiIMevoYp43QzRtkjcLOY8AtPgfzUS516G3YyZPnw/8eZxw5MlxPg78SmJEFU6/M7KULiJMn1F72uyN0oP3o9YLdZs6MMoVT29pEaaHDWlmFn29yK+sT1sOe5WSRBos1M06XJ8Qjgj7x9uV1jNIeLnW9BYDcFvURBg5WyRT1TOzqIGSs3B7Q6x4tJ9k8woTz10NVEbjJQPM0J/YOLROzk1xIEg62PXap6RBVzJ2jbKkjtRtA9vF8pjYwcySbnwBUpZk6IIqdzZ617Z5hYthaP7sw8TcXlI52HLepRRACIiAiIgIiICIiAiIgIiICIiD/9k=" class="card-img-top" alt="...">
                               <div class="card-body">
-                                <h5 class="card-title">ear phone</h5>
+                                <h4 class="card-title">ear phone</h4>
                                   <h6>CAD 99</h6>
                                   <h6>wired</h6>
-                                  <h6><a href=''>Contact No: 567-098-4321</a></h6>
+                                  <h6>Contact No: 567-098-4321</h6>
                               </div>
                             </div>
                           </div>  
@@ -114,34 +120,24 @@
         
             </div>    
         
-        <div class="row">
-          <div class="col-lg-12" style="background:#bbb; padding-bottom:2%;">
-            <h3 style="padding-top:2em; padding-left:3em;">Stay connected:</h2>
+        <div class="row footer" style="background:#89b7b9; padding-bottom:1%; margin-top: 1%;">
+          <div class="col-lg-12" style="text-align:center;">
+            <h3 style="padding-top:2em;">Stay connected</h2>
 
 
-                <button type="button" class="btn btn-primary btn-lg" style="margin-left:4em; margin-top:0.5em;"><i class="fa fa-facebook-f"></i> Facebook</button>
-                <button type="button" class="btn btn-secondary btn-lg" style="margin-top:0.5em;"><i class="fa fa-instagram"></i> Instagram</button>
-                <button type="button" class="btn btn-outline-primary btn-lg" style="margin-top:0.5em;"><i class="fa fa-twitter"></i> Twitter</button>
+                <button type="button" class="btn btn-lg" style="margin-top:0.5em;"><i class="fa fa-facebook-f"></i> Facebook</button>
+                <button type="button" class="btn btn-lg" style="margin-top:0.5em;"><i class="fa fa-instagram"></i> Instagram</button>
+                <button type="button" class="btn btn-lg" style="margin-top:0.5em;"><i class="fa fa-twitter"></i> Twitter</button>
 
+          </div>
+          <div class="footer col-lg-12" style="text-align:center; padding-top:15px; display: block;">
+            &copy; Copyright 2020. All Rights Reserved.
           </div>
 
 
 
       </div>
 
-      <div class="row" style="margin-top:0;">
-
-        <div class="col-lg-12" id="footer">
-
-            <div class="footer" style="text-align:center; padding-top:15px;">
-              &copy; Copyright 2020. All Rights Reserved.
-            </div>
-
-
-        </div>
-
-
-      </div>
          <script src="scripts/index.js"></script>
 </body>
 </html>

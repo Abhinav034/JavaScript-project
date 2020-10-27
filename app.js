@@ -16,7 +16,6 @@ app.use(express.static(publicPAth))
 //getting items for selling data
 app.get('/form' , (req , res)=>{ 
     let userInfoObj = JSON.parse(req.query.info) 
-    // console.log(userInfoObj)
     res.send("done");
     database.insert(userInfoObj , "ItemsForSell",refreshIndex)
     
@@ -24,8 +23,6 @@ app.get('/form' , (req , res)=>{
 // getting search data
 app.get('/find' , (req , res)=>{
     let searchQuery = req.query.string
-    // console.log(searchQuery)
-    
      database.readSearch(searchQuery ,mongo2Html, "ItemsForSell",res)
 
     
@@ -92,9 +89,6 @@ function loginValidation(data, loginObj, res){
 }
 
 function comparison(data, registerationObj, res){
-  
-
-    
     console.log(3)
     console.log("callback array");
    
@@ -169,7 +163,7 @@ function mongo2Html(arr, res){
                             <div class="card">
                               <img src="${String(decodeURIComponent(docItem.imageURL))}" class="card-img-top" alt="...">
                               <div class="card-body">
-                                <h5 class="card-title">${docItem.categeory}</h5>
+                                <h4 class="card-title">${docItem.categeory}</h4>
                                   <h6>CAD ${docItem.price}</h6>
                                   <h6>${docItem.description}</h6>
                                   <h6>Contact No: ${docItem.contactInfo}</h6>
@@ -189,10 +183,7 @@ function mongo2Html(arr, res){
                     if (err) return console.log(err);
                  });
 
-                 console.log("index html file was updated with new data from database")
-                 
-                 
-                 
+                 console.log("index html file was updated with new data from database")          
     
     });
 

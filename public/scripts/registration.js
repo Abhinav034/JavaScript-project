@@ -62,8 +62,10 @@ function onRegisterText(){
                 if (data.status === 'Unsuccessful'){
                     alert('Username already exsits')
                 }else{
-                    alert('Registration successful')
-                    window.location.href = "http://localhost:3000"
+                    if(confirm("User Registered Successfully!!")){
+                        window.location.href = "http://localhost:3000"
+                    }
+                    
                     
                 }
                })
@@ -92,7 +94,9 @@ function onRegisterText(){
                     alert('Invaid Username/Password')
                 }else{
                     alert('Logged In Successfully')
-                    window.location.href = "http://localhost:3000/form.html"
+                    
+                    
+                    window.location.href = "http://localhost:3000/index.html"
                     
                 }
                })

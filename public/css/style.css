@@ -7,23 +7,23 @@
     padding: 5%;
 }
 
-.form-control {
+.login-main-div .form-control {
     margin: 20px 0px;
 }
 
 .login-main-div button {
     font-size: 19px;
-    border-color: #3c6e91;
-    color: #3c6e91;
+    border-color: cadetblue;
+    color: cadetblue;
 }
 
 .login-main-div button:hover{
     color: #ffffff;
-    background-color: #3c6e91;
+    background-color: cadetblue;
 }
 
 .login-div a {
-    color: #3c6e91;
+    color: #609da0;
     text-decoration: none;
     font-weight: bold;
 }
@@ -33,4 +33,53 @@
 }
 .show{
     display: visible;
+}
+
+/* header*/
+.logo h2{
+    font-family: sans-serif;
+    color: cadetblue;
+    font-style: italic;
+    font-weight: bold;
+}
+#a {
+    color: crimson;
+}
+#s {
+    color: #615f5f;
+}
+#y {
+    color: green;
+}
+.logo sub {
+    color: brown;
+}
+
+/* index page */
+.index-btn-login, .index-btn-logout, .index-btn-search, #showAll, .index-btn-add{
+    border-color: cadetblue;
+    color: cadetblue;
+    padding: 6px 25px;
+}
+.index-btn-login:hover, .index-btn-logout:hover, .index-btn-search:hover, #showAll:hover, .index-btn-add:hover{
+    color: #ffffff;
+    background-color: cadetblue;
+}
+
+.index-btn-add{
+    margin: 0px 15px;
+}
+
+/* #showAll {
+    margin: 0px 10px;
+} */
+
+#item-form{
+    margin: 0px;
+}
+
+.footer button{
+    color: black;
+    border-color: #ccc8c8;
+    background-color: #ccc8c8;
 }
